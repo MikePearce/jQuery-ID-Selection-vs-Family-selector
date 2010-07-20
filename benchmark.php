@@ -93,11 +93,12 @@
                         class   = "aDivByAnyOtherName"
                     >
                         <?= $stuffDetail['value']; ?>
-                    </div>
                     <div
                         id      = "dataContainer_<?= $stuffDetail['id']; ?>"
                         class   = "dataContainer"
                     ></div>
+                    </div>
+                    
                 </div>
                 <? endforeach; ?>
             </div>
