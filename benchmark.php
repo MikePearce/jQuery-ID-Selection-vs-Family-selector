@@ -92,12 +92,12 @@
                         id      = "anId_<?= $stuffDetail['id']; ?>"
                         class   = "aDivByAnyOtherName"
                     >
-                        <?= $stuffDetail['value']; ?><div
+                        <?= $stuffDetail['value']; ?>
+                    </div>
+                    <div
                         id      = "dataContainer_<?= $stuffDetail['id']; ?>"
                         class   = "dataContainer"
                     ></div>
-                    </div>
-                    
                 </div>
                 <? endforeach; ?>
             </div>
