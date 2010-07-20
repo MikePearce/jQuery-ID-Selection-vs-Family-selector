@@ -6,7 +6,7 @@
 
     // First, let's create some dummy data.
     $stuff = array();
-    for($i = 0; $i < 100; $i++)
+    for($i = 0; $i < 10; $i++)
     {
         array_push(
                 $stuff,
@@ -52,23 +52,25 @@
                         idStart = microtime(1);
                         for(i = 0; i < 1000; i++)
                         {
-                            $('#dataContainer_'+id).text('ninja '+id);
+                            $('#dataContainer_'+id).text('id');
                         }
                         idEnd = microtime(1);
+                        text = $('#dataContainer_'+id).text();
 
                         // Then via children
                         siblingStart = microtime(1);
                         for(i = 0; i < 1000; i++)
                         {
-                            $(this).siblings('.dataContainer').text('ninja2 '+id);
+                            $(this).siblings('.dataContainer').text(text + ' sibling');
                         }
                         siblingEnd = microtime(1);
+                        text = $(this).siblings('.dataContainer').text();
 
                         // Then via parent/children
                         parentChildrenStart = microtime(1);
                         for(i = 0; i < 1000; i++)
                         {
-                            $(this).parent().children('div.dataContainer').text('ninja3 '+id);
+                            $(this).parent().children('div.dataContainer').text(text +' children ');
                         }
                         parentChildrenEnd = microtime(1);
 
@@ -93,12 +95,12 @@
                         class   = "aDivByAnyOtherName"
                     >
                         <?= $stuffDetail['value']; ?>
+                    </div>
                     <div
                         id      = "dataContainer_<?= $stuffDetail['id']; ?>"
                         class   = "dataContainer"
                     ></div>
-                    </div>
-                    
+
                 </div>
                 <? endforeach; ?>
             </div>
@@ -106,7 +108,7 @@
             <div id="displayRight">
                 <h2>Moo</h2>
                 ID: <input type="text" id="idTime" value="" /><br />
-                Children: <input type="text" id="siblingTime" value="" /><br />
+                Sibling: <input type="text" id="siblingTime" value="" /><br />
                 Parent: <input type="text" id="parentTime" value="" />
             </div>
 
