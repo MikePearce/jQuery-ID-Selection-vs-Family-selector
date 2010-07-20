@@ -50,22 +50,31 @@
 
                         // FIRST UP via ID
                         idStart = microtime(1);
-                        $('#dataContainer_'+id).text('ninja '+id);
+                        for(i = 0; i < 1000; i++)
+                        {
+                            $('#dataContainer_'+id).text('ninja '+id);
+                        }
                         idEnd = microtime(1);
 
                         // Then via children
-                        childrenStart = microtime(1);
-                        $(this).children('div.dataContainer').text('ninja2 '+id);
-                        childrenEnd = microtime(1);
+                        siblingStart = microtime(1);
+                        for(i = 0; i < 1000; i++)
+                        {
+                            $(this).siblings('.dataContainer').text('ninja2 '+id);
+                        }
+                        siblingEnd = microtime(1);
 
                         // Then via parent/children
                         parentChildrenStart = microtime(1);
-                        $(this).parent().children('div.dataContainer').text('ninja3 '+id);
+                        for(i = 0; i < 1000; i++)
+                        {
+                            $(this).parent().children('div.dataContainer').text('ninja3 '+id);
+                        }
                         parentChildrenEnd = microtime(1);
 
                         // Then update the times.
                         $('#idTime').val(idEnd - idStart);
-                        $('#childrenTime').val(childrenEnd - childrenStart);
+                        $('#siblingTime').val(siblingEnd - siblingStart);
                         $('#parentTime').val(parentChildrenEnd - parentChildrenStart);
                     })
 
@@ -77,32 +86,26 @@
 	</head>
 	<body>
             <div id="displayLeft">
-                <table>
                 <? foreach($stuff AS $stuffDetail): ?>
-                    <tr><td>
+                <div class="container">
                     <div
                         id      = "anId_<?= $stuffDetail['id']; ?>"
                         class   = "aDivByAnyOtherName"
                     >
-                        <?= $stuffDetail['value']; ?>
-                        <div 
-                            id      = "dataContainer_<?= $stuffDetail['id']; ?>"
-                            class   = "dataContainer"
-                        >
-
-                        </div>
-
+                        <?= $stuffDetail['value']; ?><div
+                        id      = "dataContainer_<?= $stuffDetail['id']; ?>"
+                        class   = "dataContainer"
+                    ></div>
                     </div>
-                            </td></tr>
+                    
+                </div>
                 <? endforeach; ?>
-
-                    </table>
             </div>
 
             <div id="displayRight">
                 <h2>Moo</h2>
                 ID: <input type="text" id="idTime" value="" /><br />
-                Children: <input type="text" id="childrenTime" value="" /><br />
+                Children: <input type="text" id="siblingTime" value="" /><br />
                 Parent: <input type="text" id="parentTime" value="" />
             </div>
 
